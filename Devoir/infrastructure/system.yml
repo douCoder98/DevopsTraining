@@ -1,0 +1,6 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: installation d'un utilisateur toto
+      user:
+        name: toto

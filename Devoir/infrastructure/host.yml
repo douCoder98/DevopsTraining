@@ -1,0 +1,5 @@
+all:
+  hosts:
+    monrunnergitlab_prisca:
+      ansible_host: 10.160.32.181
+      ansible_user: coding

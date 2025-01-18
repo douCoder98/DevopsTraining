@@ -1,0 +1,22 @@
+services:
+  elyes06:
+    image: elyes06/dockercours
+    ports:
+      - 8080:80
+  
+  doscod98:
+    image: doscod98/web
+    ports:
+      - 8081:80
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8080
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example

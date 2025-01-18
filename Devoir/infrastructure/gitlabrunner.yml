@@ -1,0 +1,29 @@
+- hosts: monrunnergitlab_prisca
+  become: true
+  roles:
+    - role: geerlingguy.docker
+      vars:
+        docker_install_compose: true  # to enable "docker-compose"
+        docker_install_compose_plugin: true  # to enable "docker compose"
+      tags: docker
+
+    - role: riemers.gitlab-runner
+      tags: runner
+      vars:
+        gitlab_runner_registration_token: "GR1348941CcXa-RfPHAVQsAuf5SGy"
+        gitlab_runner_config_update_mode: by_registering
+        # gitlab_runner_package_version: 16.6.1
+        gitlab_runner_runners:
+          - name: "{{inventory_hostname}}"
+            executor: docker
+            docker_privileged: true
+            docker_image: 'alpine'
+            run_untagged: true  # change to take only tagged jobs like for production
+
+  tasks:
+    - name: Ensure user gitlab-runner is in docker group
+      user:
+        name: gitlab-runner
+        groups: docker
+        append: true
+      tags: user

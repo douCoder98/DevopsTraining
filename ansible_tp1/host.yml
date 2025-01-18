@@ -1,0 +1,5 @@
+all:
+  hosts:
+    doucoderserver:
+      ansible_host: 10.160.32.234
+      ansible_user: doucoder
